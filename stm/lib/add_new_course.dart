@@ -104,6 +104,7 @@ class _AddNewCourseState extends State<AddNewCourse> {
             ElevatedButton(
               onPressed: (){
                 writeData();
+                Navigator.of(context).pop();
               }, 
               child: Padding(
                 padding: const EdgeInsets.all(13.0),
