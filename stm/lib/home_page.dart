@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:stm/add_new_course.dart';
+import 'package:stm/update_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,6 +30,16 @@ class _HomePageState extends State<HomePage> {
     .doc(selectDocument)
     .delete();
     
+  }
+
+  Future <void>editCourse(selectDocument,courseName,courseFee,courseImg){
+    
+     return showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      isDismissible: true,
+      isScrollControlled: true,
+      context: context,
+      builder: (context)=>UpdateCourse(selectDocument,courseName,courseFee,courseImg));
   }
 
 
@@ -101,9 +112,12 @@ class _HomePageState extends State<HomePage> {
                     elevation: 10,
                     color: Colors.tealAccent,
                     child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      
                       children: [
-                        IconButton(onPressed: (){}, icon: Icon(Icons.edit)),
+                        IconButton(onPressed: (){
+                          editCourse(document.id,data["course_name"],data["course_fee"],data["img"]);
+                        }, 
+                        icon: Icon(Icons.edit)),
                         
                         IconButton(
                           onPressed: (){
